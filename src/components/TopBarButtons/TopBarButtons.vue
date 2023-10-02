@@ -8,7 +8,7 @@ import { ref } from 'vue';
 const store = useThemeStore()
 const showElement = ref(false);
 const isMobile = ref(window.innerWidth < 900);
-console.log(isMobile)
+
 const openModal = () => {
   showElement.value = true;
 };
