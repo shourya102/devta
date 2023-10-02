@@ -2,12 +2,28 @@
 import { useThemeStore } from '../../stores/theme';
 // import { switchTheme } from '../utils/themeSwitch';
 import { buttonData } from './buttonData';
+import SettingsModal from "../SettingsModal/SettingsModal.vue";
+import { ref } from 'vue';
 
 const store = useThemeStore()
+const showElement = ref(false);
 
+const openModal = () => {
+  showElement.value = true;
+};
+
+const closeModal = () => {
+  showElement.value = false;
+}
+
+const saveData = () => {
+  //save data actions
+  showElement.value = false;
+}
 </script>
 
 <template>
+    <SettingsModal v-show=showElement @close=closeModal @save=saveData />
     <div id="root" v-for="(item, index) in buttonData" :key="index">
         <a :href="item.url" target="_blank" rel="noopener noreferrer">
             <button data-toggle="tooltip" data-placement="top" :title="item.tooltipTitle" class="btn btn-secondary">
@@ -22,6 +38,11 @@ const store = useThemeStore()
         </div>
         <div v-else>
             <i class="bi bi-moon-fill"></i>
+        </div>
+    </button>
+    <button class="btn btn-secondary" data-placement="top" title="Settings" @click=openModal>
+        <div>
+          <i class="bi bi-gear"></i>
         </div>
     </button>
 </template>
