@@ -7,7 +7,8 @@ import { ref } from 'vue';
 
 const store = useThemeStore()
 const showElement = ref(false);
-
+const isMobile = ref(window.innerWidth < 900);
+console.log(isMobile)
 const openModal = () => {
   showElement.value = true;
 };
@@ -23,7 +24,7 @@ const saveData = () => {
 </script>
 
 <template>
-    <SettingsModal v-show=showElement @close=closeModal @save=saveData />
+    <SettingsModal v-show=showElement @close=closeModal @save=saveData :is-mobile="isMobile" />
     <div id="root" v-for="(item, index) in buttonData" :key="index">
         <a :href="item.url" target="_blank" rel="noopener noreferrer">
             <button data-toggle="tooltip" data-placement="top" :title="item.tooltipTitle" class="btn btn-secondary">

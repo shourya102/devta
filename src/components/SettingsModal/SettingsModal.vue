@@ -2,6 +2,9 @@
 import {settingsList} from "@/SettingsModal/settingsList.js";
 
 export default {
+  props: {
+    isMobile: Boolean
+  },
   methods: {
     settingsList() {
       return settingsList
@@ -17,7 +20,10 @@ export default {
 </script>
 
 <template>
-  <div class="modal-backdrop bg-black bg-opacity-50">
+  <div v-if="isMobile">
+
+  </div>
+  <div v-else class="modal-backdrop bg-black bg-opacity-50">
     <div id="settings" aria-hidden="true"
          aria-labelledby="settingsModal" class="modal" role="dialog"
          style="display: block;" tabindex="-1">
@@ -29,17 +35,18 @@ export default {
             </button>
           </div>
           <div class="modal-body d-flex flex-row">
-            <ul class="nav nav-pills flex-column gap-1 border-end">
+            <ul class="nav nav-pills flex-column gap-1">
               <div v-for="(item, index) in settingsList()" :key="index">
                 <li class="nav-item">
                   <button :title=item.tooltip class="btn-item" type="button">{{ item.title }}</button>
                 </li>
               </div>
             </ul>
-            <div>
+            <div class="block card w-100">
 
             </div>
           </div>
+
           <div class="modal-footer">
             <button class="btn btn-secondary" data-dismiss="modal" type="button" @click=close>Close</button>
             <button class="btn btn-primary" type="button" @click=saveData>Save changes</button>
@@ -56,7 +63,7 @@ export default {
 .btn-item {
   padding: 0.6rem;
   margin-bottom: 3px;
-  margin-right: 1rem;
+  margin-right: 1.2rem;
   background-color: transparent;
   border: none;
 }
