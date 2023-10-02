@@ -64,6 +64,7 @@ export default {
   padding: 0.6rem;
   margin-bottom: 3px;
   margin-right: 1.2rem;
+  width: 85%;
   background-color: transparent;
   border: none;
 }
@@ -76,5 +77,9 @@ export default {
 .btn-item:focus {
   background-color: var(--bs-blue);
   border-radius: 5px;
+}
+
+.card {
+  height: 60vh;
 }
 </style>
